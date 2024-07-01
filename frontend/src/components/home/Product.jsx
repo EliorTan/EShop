@@ -3,9 +3,16 @@ import Card from 'react-bootstrap/Card';
 import {Link} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Rating from '../shared/Rating';
+import { useContext } from 'react';
+import { addToCartHandler } from '../../utils';
+
 
 const Product = ({product}) => {
-  return (
+    const {state, dispatch: ctxDispatch} = useContext(Store);
+    const { cart: {cartItems} } = state;
+
+
+    return (
     <Card className="product-card">
         <Link to={`/product/${product.token}`}>
             <Card.Img style={{padding: "20px"}} variant="top" src={product.image} alt={product.token}/>
@@ -27,7 +34,7 @@ const Product = ({product}) => {
             <Link to={`/product/${product.token}`}>
                 {product.countInStock === 0 ? 
                 (<Button variant="light" disabled>Out of Stock</Button>) :
-                (<Button variant="primary">Add to Cart</Button>)}
+                (<Button className='btn-primary' onClick={() => addToCartHandler(product,cartItems,ctxDispatch)}>Add to Cart</Button>)}
             </Link>
         </Card.Body>
     </Card>
