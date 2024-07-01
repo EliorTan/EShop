@@ -24,7 +24,7 @@ const Header = () => {
                     <i className="fas fa-shopping-cart text-white"></i>
                     {/* {{badge}} */}
                     </Link>
-                    <Link className="nav-link text-white me-2" to="/singin">Sign In</Link>
+                    <Link className="nav-link text-white me-2" to="/signin">Sign In</Link>
                     {/* <Link className="nav-link text-white" to="/signup">Sign Up</Link> */}
                 </nav>
                 {/* {TODO - deal with users} */}

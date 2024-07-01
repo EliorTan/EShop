@@ -4,6 +4,10 @@ import homePageReducer from '../reducers/homePageReducer.jsx';
 import { GET_REQUEST, GET_SUCCESS, GET_ERROR } from '../actions.jsx';
 import axios from 'axios';
 import { useEffect } from 'react';
+import Products from '../components/home/Prodacts.jsx';
+import Loading from '../components/shared/Loading.jsx';
+import MessageBox from '../components/shared/MessageBox.jsx';
+
 
 const initialState = {
     loading: true,
@@ -20,6 +24,7 @@ const HomePage = () => {
 
             try {
                 const res = await axios.get("http://localhost:8080/api/v1/products");
+                console.log(res.data)
                 dispatch({type: GET_SUCCESS, payload: res.data})
             } catch (error) {
                 dispatch({type: GET_ERROR, payload: error.message})
@@ -32,19 +37,18 @@ const HomePage = () => {
     return (
         <div>
             <Title title="HomePage"/>
-            <div>
+            <div className="backgroundHomePage">
                 <img
                 style={{width: "100%"}}
-                src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
+                src="https://m.media-amazon.com/images/I/81d5OrWJAkL.SX3000.jpg"
                 alt="backgroundHomePage"
                 />
             </div>
             <div className="products">
                 {
-                    //TODO: Loading and MessageBox
-                    // state.loading ? (<Loading/>):
-                    // state.error ? (<MessageBox variant="danger">{state.error}</MessageBox>):
-                    // (<div>products here</div>)
+                    state.loading ? (<Loading/>):
+                    state.error ? (<MessageBox variant="danger">{state.error}</MessageBox>):
+                    (<Products products={state.products}></Products>)
                 }
             </div>
         </div>
