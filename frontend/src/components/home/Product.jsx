@@ -5,13 +5,14 @@ import Button from 'react-bootstrap/Button';
 import Rating from '../shared/Rating';
 import { useContext } from 'react';
 import { addToCartHandler } from '../../utils';
+import { Store } from '../../store';
 
 
 const Product = ({product}) => {
     const {state, dispatch: ctxDispatch} = useContext(Store);
     const { cart: {cartItems} } = state;
 
-
+    
     return (
     <Card className="product-card">
         <Link to={`/product/${product.token}`}>
@@ -31,11 +32,11 @@ const Product = ({product}) => {
                 <strong>${product.price}</strong>
             </Card.Text>
 
-            <Link to={`/product/${product.token}`}>
+            {/* <Link to={`/`}> */}
                 {product.countInStock === 0 ? 
                 (<Button variant="light" disabled>Out of Stock</Button>) :
                 (<Button className='btn-primary' onClick={() => addToCartHandler(product,cartItems,ctxDispatch)}>Add to Cart</Button>)}
-            </Link>
+            {/* </Link> */}
         </Card.Body>
     </Card>
   )
