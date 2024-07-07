@@ -1,3 +1,6 @@
+
+
+
 const homePageReducer = (state,action) => {
     switch (action.type) {
         case "GET_REQUEST":

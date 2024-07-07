@@ -424,7 +424,7 @@ const data = {
       price: 14.0,
       description: "Just a cute one. fits for you, fo' sure.",
       category: "Jewelery",
-      image: "https://img.fruugo.com/product/1/41/665359411_max.jpg",
+      image: "https://ae01.alicdn.com/kf/HTB1L4GRy_lYBeNjSszcq6zwhFXaj/Cute-Cat-Animal-Jewelry-Brooch-Pins-Rhinestone-Crystal-Glasses-Cat-Brooches-for-Women-Wedding-Fashion-Brooch.jpg",
       countInStock: 55,
       token: "Cute, Premium Brooch",
       brand: "Balenciaga",
@@ -484,7 +484,7 @@ const data = {
       description: "Not-Standard USB Charger",
       category: "Electronics",
       image:
-        "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/512SRh4RmXL._AC_UF894,1000_QL80_.jpg",
+        "https://i5.walmartimages.com/asr/724c454e-825c-463b-9043-77b203eab4e8.4bdc6597a51ecf647977dcb42c706302.jpeg",
       countInStock: 21,
       token: "USB Charger 3.2",
       brand: "Samtongue",

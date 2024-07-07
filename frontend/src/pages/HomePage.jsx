@@ -23,7 +23,7 @@ const HomePage = () => {
             dispatch({type: GET_REQUEST});
 
             try {
-                const res = await axios.get("http://localhost:8080/api/v1/products");
+                const res = await axios.get("/api/v1/products");
                 console.log(res.data)
                 dispatch({type: GET_SUCCESS, payload: res.data})
             } catch (error) {

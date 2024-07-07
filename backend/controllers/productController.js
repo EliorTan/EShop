@@ -18,10 +18,21 @@ const getProductById = async (req, res) => {
         res.send(product);
     }
     else {
-        res.status(404).send({ message: 'Product Not Found' });
+        res.status(404).send({ message: 'Product ID Not Found' });
     }
 }
 
-export {getProducts,getProductById}
+const getProductByToken = async (req, res) => {
+    const product = await Product.findOne({ token: req.params.token });
+
+    if (product) {
+        res.send(product);
+    }
+    else {
+        res.status(404).send({ message: 'Product TOKEN Not Found' });
+    }
+}
+
+export { getProducts, getProductById, getProductByToken}
 
 //rafce = To initiate react component
