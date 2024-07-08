@@ -9,7 +9,7 @@ import { useContext } from 'react'
 import { Store } from '../../store'
 import Rating from '../shared/Rating'
 
-const ItemsInCart = ({cartItems, updateCartHandler}) => {
+const ItemsInCart = ({cartItems, updateCartHandler, removeItemHandler}) => {
   return (
     <div>
         {cartItems.length === 0 ? (
@@ -60,36 +60,12 @@ const ItemsInCart = ({cartItems, updateCartHandler}) => {
                             </Col>
                             <Col md={1}>${item.price}</Col>
                             <Col md={1}>
-
-                                    {/* //ORI WAY */}
-
-                                {/* <Button
+                                <Button
                                     variant="light"
-                                    name="plusButton"
-                                    onClick={() =>
-                                        UpdateCartHandelr(item, item.quantity + 1)
-                                    }
-                                    disabled={item.quantity === item.countInStock}
+                                    onClick={() => removeItemHandler(item)}
                                 >
-                                    <i className="fas fa-plus-circle"></i>
-                                </Button> */}
-
-                            {/* AI WAY */}
-{/*                             
-                                <select
-                                    value={item.quantity}
-                                    onChange={(e) =>
-                                        UpdateCartHandler(item, e.target.value)
-                                    }
-                                >
-                                    {[...Array(item.countInStock).keys()].map(
-                                        (x) => (
-                                            <option key={x + 1} value={x + 1}>
-                                                {x + 1}
-                                            </option>
-                                        )
-                                    )}
-                                </select> */}
+                                    <i className="fas fa-trash"></i>
+                                </Button>
                             </Col>
                         </Row>
                     </ListGroup.Item>
@@ -103,7 +79,8 @@ const ItemsInCart = ({cartItems, updateCartHandler}) => {
 
 ItemsInCart.propTypes = {
   cartItems: PropTypes.array,
-  updateCartHandler: PropTypes.func
+  updateCartHandler: PropTypes.func,
+  removeItemHandler: PropTypes.func,
 }
 
 export default ItemsInCart

@@ -32,6 +32,13 @@ const Header = () => {
     <header>
         <NavBar bg="dark" variant="dark">
             <Container>
+                <Link onClick={() => navigate(-1)}>
+                {location.pathname !== "/" && (
+                    <i className="fas fa-arrow-left text-white align-arrow-right">
+                        Back
+                    </i>
+                )}
+                </Link>
                 <LinkContainer to="/">
                     <NavBar.Brand>
                     <img

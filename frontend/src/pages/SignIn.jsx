@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -9,13 +9,21 @@ import { toast } from "react-toastify";
 import { getError } from "../utils";
 import { Store } from "../store";
 import { USER_SIGNIN } from "../actions";
+import { useLocation } from "react-router-dom";
+
 
 const SignIn = () => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
     const navigate = useNavigate();
-    const {dispatch: ctxDispatch} = useContext(Store)
+    const {state, dispatch: ctxDispatch} = useContext(Store);
+    const {userInfo} = state;
+
+    const {search} = useLocation();
+    const redirectInUrl = new URLSearchParams(search).get('redirect')
+    const redirect = redirectInUrl ? redirectInUrl : '/';
+
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -30,13 +38,19 @@ const SignIn = () => {
 
 
             localStorage.setItem('userInfo',JSON.stringify(data));
-            navigate('/');
+            navigate(redirect || '/');
         } catch(e)
         {
             toast.error(getError(e))
             console.log(e.message);
         }
     }
+
+    useEffect(() => {
+        if(userInfo){
+            navigate(redirect);
+        }
+    },[redirect,userInfo,navigate]);
 
     return (
     <Container className="small-container">
@@ -58,7 +72,7 @@ const SignIn = () => {
             </div>
 
             <div className="mb-3">
-                New Customer? <Link to={'/signup'}>Create your account</Link>
+                New Customer? <Link to={`/signup?redirect=${redirect}`}>Create your account</Link>
             </div>
 
              <div className="mb-3">

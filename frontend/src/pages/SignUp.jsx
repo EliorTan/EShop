@@ -9,6 +9,8 @@ import { toast } from "react-toastify";
 import { getError } from "../utils";
 import { Store } from "../store";
 import { USER_SIGNIN } from "../actions";
+import { useLocation } from "react-router-dom";
+
 
 const SignUp = () => {
     const [name,setName] = useState("");
@@ -16,6 +18,9 @@ const SignUp = () => {
     const [password,setPassword] = useState("");
     const [confirmPassword,setConfirmPassword] = useState("");
 
+    const {search} = useLocation();
+    const redirectInUrl = new URLSearchParams(search).get('redirect')
+    const redirect = redirectInUrl ? redirectInUrl : '/';
 
     const navigate = useNavigate();
     const {state, dispatch: ctxDispatch} = useContext(Store)
@@ -23,13 +28,9 @@ const SignUp = () => {
 
     useEffect(() => {
         if(userInfo){
-          //navigate to redirect later
-            navigate('/');
+            navigate(redirect);
         }
-    },[userInfo,navigate]);
-
-
-
+    },[userInfo,navigate,redirect]);
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -85,7 +86,7 @@ const SignUp = () => {
             </div>
 
             <div className="mb-3">
-                Already have an account? {" "}<Link to={'/signin'}>Sign-In here</Link>
+                Already have an account? {" "}<Link to={`/signin?redirect=${redirect}`}>Sign-In here</Link>
             </div>
 
         </Form>

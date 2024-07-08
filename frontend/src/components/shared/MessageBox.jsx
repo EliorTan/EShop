@@ -11,7 +11,7 @@ const MessageBox = ({childern, variant}) => {
 }
 
 MessageBox.propTypes = {
-    childern: PropTypes.any,
+  childern: PropTypes.any,
   variant: PropTypes.string
 }
 export default MessageBox
