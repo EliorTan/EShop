@@ -2,7 +2,9 @@ import React from 'react'
 
 const SubmitOrderPage = () => {
   return (
-    <div>SubmitOrderPage</div>
+    <div>
+        
+    </div>
   )
 }
 
