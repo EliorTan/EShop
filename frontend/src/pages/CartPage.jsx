@@ -17,7 +17,6 @@ const CartPage = () => {
     const { cart:{cartItems} } = state;
     
     const navigate = useNavigate();
-    //TODO: Add Navigation and redirection
 
     const updateCartHandler = async (item, quantity) => {
         try {

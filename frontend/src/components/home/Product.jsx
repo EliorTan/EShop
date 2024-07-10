@@ -25,7 +25,6 @@ const Product = ({product}) => {
                 </Link>
             </Card.Title>
 
-            {/* TODO: Add rating */}
             <Rating rating={product.rating.rate} numReviews={product.rating.count}/>
 
             <Card.Text>

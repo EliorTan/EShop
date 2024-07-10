@@ -7,6 +7,3 @@ const Footer = () => {
 
 export default Footer
 
-
-
-// /rface --> short cut 

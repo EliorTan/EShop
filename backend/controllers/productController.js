@@ -35,4 +35,3 @@ const getProductByToken = async (req, res) => {
 
 export { getProducts, getProductById, getProductByToken}
 
-//rafce = To initiate react component

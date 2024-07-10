@@ -7,7 +7,6 @@ const Title = ({title}) => {
         <Helmet>
             <title>{title}</title>
         </Helmet>
-        
         </>
     )
 }
