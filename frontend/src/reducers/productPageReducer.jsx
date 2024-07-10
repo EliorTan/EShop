@@ -1,14 +1,15 @@
+import { GET_ERROR, GET_REQUEST, GET_SUCCESS } from "../actions";
 
 
 
 const productPageReducer = (state,{type, payload}) => {
 
     switch (type) {
-        case "GET_REQUEST":
+        case GET_REQUEST:
             return {...state, loading: true}
-        case "GET_SUCCESS":
+        case GET_SUCCESS:
             return {...state, product: payload, loading: false}
-        case "GET_ERROR":
+        case GET_ERROR:
             return {...state, error: payload, loading: false}
         default:
             return state;

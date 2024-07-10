@@ -14,6 +14,7 @@ import CartPage from './pages/CartPage';
 import ShippingAddressPage from './pages/ShippingAddressPage';
 import PaymentPage from './pages/PaymentPage';
 import SubmitOrderPage from './pages/SubmitOrderPage';
+import OrderPage from './pages/OrderPage';
 
 const App = () => {
   return (
@@ -31,8 +32,8 @@ const App = () => {
                 <Route path='/cart' element={<CartPage />} />
                 <Route path='/shipping' element={<ShippingAddressPage />} />
                 <Route path='/payment' element={<PaymentPage />} />
-                <Route path='/placeholder' element={SubmitOrderPage} />
-                
+                <Route path='/placeorder' element={<SubmitOrderPage/>} />
+                <Route path='/order/:id' element={<OrderPage/>} />
 
               </Routes>
             </Container>

@@ -24,7 +24,6 @@ const HomePage = () => {
 
             try {
                 const res = await axios.get("/api/v1/products");
-                console.log(res.data)
                 dispatch({type: GET_SUCCESS, payload: res.data})
             } catch (error) {
                 dispatch({type: GET_ERROR, payload: error.message})

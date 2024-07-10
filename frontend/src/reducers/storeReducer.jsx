@@ -1,4 +1,4 @@
-import { USER_SIGNIN, USER_SIGNOUT, ADD_TO_CART, REMOVE_FROM_CART, SAVE_SHIPPING_ADDRESS, SAVE_PAYMENT_METHOD } from "../actions"
+import { USER_SIGNIN, USER_SIGNOUT, ADD_TO_CART, REMOVE_FROM_CART, SAVE_SHIPPING_ADDRESS, SAVE_PAYMENT_METHOD, CLEAR_CART } from "../actions"
 
 
 
@@ -37,7 +37,6 @@ const storeReducer = (state, {type, payload}) => {
             return {...state, cart: {...state.cart, shippingAddress: payload}}
         }
         case SAVE_PAYMENT_METHOD:{
-            //const {paymentMethodName} = payload;
 
             localStorage.setItem('paymentMethod', JSON.stringify(payload));
             
@@ -50,6 +49,9 @@ const storeReducer = (state, {type, payload}) => {
             return {...state, cart:{...state.cart, cartItems}}
         }
 
+        case CLEAR_CART:{
+            return {...state, cart: {...state.cart, cartItems: []}}
+        }
 
         default:
             return state

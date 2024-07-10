@@ -42,15 +42,13 @@ const ShippingAddressPage = () => {
     };
 
     useEffect(() => {
-        const shippingAddress = localStorage.getItem('shippingAddress');
-        if (shippingAddress) {
-            setFullName(JSON.parse(shippingAddress).fullName);
-            setAddress(JSON.parse(shippingAddress).address);
-            setCity(JSON.parse(shippingAddress).city);
-            setPostalCode(JSON.parse(shippingAddress).postalCode);
-            setCountry(JSON.parse(shippingAddress).country);
+        if (cartItems.length === 0) {
+          navigate('/');
         }
-    }, [ fullName, address, city, postalCode, country ]);
+        if (!userInfo) {
+          navigate('/signin?redirect=/shipping');
+        }
+      }, [userInfo, navigate, cartItems]);
 
     return (
         <div>
