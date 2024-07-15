@@ -5,11 +5,11 @@ import CheckoutSteps from "../components/shared/CheckoutSteps";
 import Title from "../components/shared/Title";
 import { useNavigate } from "react-router-dom";
 import { Container, Form } from "react-bootstrap";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 
 
-const PaymentPage = ( ) => {
+const PaymentPage = (  ) => {
     const navigate = useNavigate();
     const {state, dispatch: ctxDispatch} = useContext(Store);
     const { cart:{cartItems, shippingAddress, paymentMethod},
@@ -74,8 +74,5 @@ const PaymentPage = ( ) => {
   )
 }
 
-PaymentPage.propTypes = {
-    children: PropTypes.node
-}
 
 export default PaymentPage

@@ -48,7 +48,7 @@ const ShippingAddressPage = () => {
         if (!userInfo) {
           navigate('/signin?redirect=/shipping');
         }
-      }, [userInfo, navigate, cartItems]);
+      }, [userInfo, navigate, cartItems]);
 
     return (
         <div>
