@@ -14,6 +14,7 @@ import CheckoutSteps from "../components/shared/CheckoutSteps";
 import { ListGroup } from "react-bootstrap";
 import "../App.css";
 import Loading from "../components/shared/Loading";
+import axios from "axios";
 
 const SubmitOrderPage = () => {
   const [loading, setLoading] = useState(false);
@@ -41,11 +42,11 @@ const SubmitOrderPage = () => {
     }
   }, [navigation, cart, paymentMethod, shippingAddress, userInfo, cartItems]);
 
-  const submitOrderHandler = async () => {
+  const submitOrderHandler = async (e) => {
+    e.preventDefault();
     try {
       setLoading(true);
-      const { data } = await axios.post(
-        "/api/v1/orders",
+      const { data } = await axios.post("/api/v1/orders",
         {
           orderItems: cartItems,
           shippingAddress: shippingAddress,
@@ -61,6 +62,7 @@ const SubmitOrderPage = () => {
           },
         }
       );
+      console.log(data);
       //TODO: More code here later.
       ctxDispatch({ type: CLEAR_CART });
       localStorage.removeItem("cartItems");

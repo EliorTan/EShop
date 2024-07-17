@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getError, getFilterUrl } from '../utils';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { GET_FAIL, GET_REQUEST } from '../actions';
+import { GET_FAIL, GET_REQUEST, GET_SUCCESS } from '../actions';
 import searchPageReducer from '../reducers/searchPageReducer';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -23,15 +23,15 @@ const prices = [
         value: '1-50',
     },
     {
-        name: '$51 to $200',
-        value: '51-200',
+        name: '$50 to $200',
+        value: '50-200',
     },
     {
-        name: '$201 to $1000',
-        value: '201-1000',
+        name: '$200 to $1000',
+        value: '200-1000',
     },
 ];
-export const ratings = [
+export const rates = [
     {
         name: '4 stars & up',
         rating: 4,
@@ -86,8 +86,8 @@ const SearchPage = () => {
         const getData = async () => {
             try {
                 dispatch({ type: GET_REQUEST });
-                const { data } = await axios.get(`/api/v1/products/search?category=
-                    ${category}&query=${query}&price=${price}&rating=${rating}&order=${order}&page=${page}`);
+                const { data } = await axios.get(`/api/v1/products/search?category=${category}&query=${query}&price=${price}&rating=${rating}&order=${order}&page=${page}`);
+                    console.log(data);
                 dispatch({ type: GET_SUCCESS, payload: data });
             } catch (error) {
                 dispatch({ type: GET_FAIL, payload: getError(error) });
@@ -139,7 +139,7 @@ const SearchPage = () => {
             <div>
                 <h3>Reviews</h3>
                 <ul>
-                    {ratings.map((r) => (
+                    {rates.map((r) => (
                         <li key={r.name}>
                             <Link className={r.rating === rating ? 'text-bold' : ''}
                             to={getFilterUrl(search, {rating: r.rating})} >
@@ -161,12 +161,10 @@ const SearchPage = () => {
                             <Col md={6}>
                                 <div>
                                     {countProducts === 0 ? 'No' : countProducts} Results
-                                    {query !== 'all' && ' : '}{query}
-                                    {category !== 'all' && ' : '}{category}
-                                    {price !== 'all' && ' : Price'}{price}
-                                    {rating !== 'all' && ' : Rating'}{rating && (
-                                        <Rating caption={" "} rating={rating}/>
-                                    )}
+                                    {query !== 'all' && ' : ' + query}
+                                    {category !== 'all' && ' : ' + category}
+                                    {price !== 'all' && ' : Price' + price}
+                                    {rating !== 'all' && ' : Rating' + rating + ' & up'}
                                     {query !== 'all' || category !== 'all' || rating !== 'all' || price !== 'all' ? (
                                         <Button variant="light" onClick={() => navigate(getFilterUrl(search,{
                                             category: 'all',

@@ -5,7 +5,7 @@ import { addOrder, getOrderById } from '../controllers/orderController.js';
 
 const orderRouter = express.Router();
 
-orderRouter.post('/', isAuth, expressAsyncHandler(addOrder))
 orderRouter.get('/:id', isAuth, expressAsyncHandler(getOrderById))
+orderRouter.post('/', isAuth, expressAsyncHandler(addOrder))
 
 export default orderRouter;

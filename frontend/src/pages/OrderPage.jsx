@@ -11,8 +11,12 @@ import Row  from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
 import { useReducer } from 'react';
+import orderPageReducer from '../reducers/orderPageReducer';
+import {Link} from 'react-router-dom';
+
 
 
 const OrderPage = () => {
@@ -56,7 +60,6 @@ const OrderPage = () => {
     }, [ navigate, userInfo, orderId, order  ]);
   return (
     <div>
-        Order
         {loading ? <Loading /> : error ? <MessageBox variant="danger">{error}</MessageBox> : (
             <div>
                 <Title title="Order" />
@@ -123,13 +126,48 @@ const OrderPage = () => {
                                 </ListGroup>
                             </Card.Body>
                         </Card>
-
+                    </Col>
+                    <Col md={4}>
+                        <Card className="mb-3">
+                            <Card.Body>
+                                <Card.Title>Order Summary</Card.Title>
+                                <ListGroup variant="flush">
+                                    <ListGroup.Item>
+                                        <Row>
+                                            <Col>Items</Col>
+                                            <Col>${order.itemsPrice.toFixed(2)}</Col>
+                                        </Row>
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        <Row>
+                                            <Col>Shipping</Col>
+                                            <Col>${order.shippingPrice.toFixed(2)}</Col>
+                                        </Row>
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        <Row>
+                                            <Col>Tax</Col>
+                                            <Col>${order.taxPrice.toFixed(2)}</Col>
+                                        </Row>
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        <Row>
+                                            <Col>
+                                                <strong>Order Total</strong>
+                                            </Col>
+                                            <Col><strong>${order.totalPrice.toFixed(2)}</strong></Col>
+                                        </Row>
+                                    </ListGroup.Item>
+          
+                                </ListGroup>
+                            </Card.Body>
+                        </Card>
                     </Col>
                 </Row>
             </div>
         ) } 
 
-        {/* <OrderDescription order={order} />} */}
+        {/* <OrderDescription order={order} /> */}
 
     </div>
   )
